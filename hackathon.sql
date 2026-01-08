@@ -150,10 +150,11 @@ JOIN Employee e ON e.dept_id = d.dept_id
 GROUP BY d.dept_name
 HAVING COUNT(e.emp_id) >= 2;
 
--- 15 Nhân viên tham gia dự án budget > 50000
-SELECT DISTINCT e.emp_name, e.email
+
+-- 16 Nhân viên thuộc phòng 'IT' và tham gia dự án 'Website Redesign'
+SELECT e.emp_name, a.role
 FROM Employee e
+JOIN Department d ON d.dept_id = e.dept_id
 JOIN Assignment a ON a.emp_id = e.emp_id
 JOIN Project p ON p.project_id = a.project_id
-WHERE p.budget > 50000;
-
+WHERE d.dept_name = 'IT' AND p.project_name = 'Website Redesign';
